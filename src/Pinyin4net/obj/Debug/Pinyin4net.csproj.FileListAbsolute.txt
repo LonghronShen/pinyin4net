@@ -1,0 +1,5 @@
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4net\obj\Debug\Pinyin4net.csprojResolveAssemblyReference.cache
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4net\bin\Debug\Pinyin4net.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4net\bin\Debug\Pinyin4net.pdb
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4net\obj\Debug\Pinyin4net.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4net\obj\Debug\Pinyin4net.pdb

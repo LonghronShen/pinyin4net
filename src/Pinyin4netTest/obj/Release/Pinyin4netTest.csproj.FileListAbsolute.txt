@@ -1,0 +1,11 @@
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\Pinyin4netTest.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\Pinyin4netTest.pdb
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\nunit.framework.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\nunit.mocks.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\Pinyin4net.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\pnunit.framework.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\Pinyin4net.pdb
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\bin\Release\nunit.framework.xml
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\obj\Release\Pinyin4netTest.csprojResolveAssemblyReference.cache
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\obj\Release\Pinyin4netTest.dll
+D:\Users\unhap_000\Documents\Github\pinyin4net\src\Pinyin4netTest\obj\Release\Pinyin4netTest.pdb
