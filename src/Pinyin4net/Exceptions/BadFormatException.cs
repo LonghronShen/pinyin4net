@@ -30,7 +30,7 @@ namespace Pinyin4net.Exceptions
     /// <summary>
     /// An exception class indicates the wrong combination of pinyin output formats
     /// </summary>
-    public class InvalidHanyuPinyinFormatException : ApplicationException
+    public class InvalidHanyuPinyinFormatException : Exception
     {
         public InvalidHanyuPinyinFormatException() : base() { }
         public InvalidHanyuPinyinFormatException(string message) : base(message) { }

@@ -37,6 +37,7 @@ namespace Pinyin4net
     {
         private static Dictionary<string, string> dict;
 
+       
         /// <summary>
         /// We don't need any instances of this object.
         /// </summary>
@@ -50,9 +51,12 @@ namespace Pinyin4net
         static PinyinHelper()
         {
             dict = new Dictionary<string, string>();
+            var assembly = typeof(PinyinHelper).GetTypeInfo().Assembly;
+         
             var doc = XDocument.Load(
-                Assembly.GetExecutingAssembly().GetManifestResourceStream(
+                assembly.GetManifestResourceStream(
                     "Pinyin4net.Resources.unicode_to_hanyu_pinyin.xml"));
+            
             var query =
                 from item in doc.Root.Descendants("item")
                 select new
@@ -118,9 +122,7 @@ namespace Pinyin4net
         private static string[] GetUnformattedHanyuPinyinStringArray(char ch)
         {
             string code = String.Format("{0:X}", (int)ch).ToUpper();
-#if DEBUG
-            Console.WriteLine(code);
-#endif
+ 
             if (dict.ContainsKey(code))
             {
                 return dict[code].Split(',');

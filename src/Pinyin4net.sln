@@ -1,9 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinyin4net", "Pinyin4net\Pinyin4net.csproj", "{126A4885-0CD7-4D9F-B039-3CF235F3C9E4}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinyin4netTest", "Pinyin4netTest\Pinyin4netTest.csproj", "{15C612DD-DB7C-4905-9786-71B1E6A94007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinyin4net", "Pinyin4net\Pinyin4net.csproj", "{10F066B8-6985-44C4-96CC-CF9CFC7A5F7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{126A4885-0CD7-4D9F-B039-3CF235F3C9E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{126A4885-0CD7-4D9F-B039-3CF235F3C9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{126A4885-0CD7-4D9F-B039-3CF235F3C9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{126A4885-0CD7-4D9F-B039-3CF235F3C9E4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15C612DD-DB7C-4905-9786-71B1E6A94007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15C612DD-DB7C-4905-9786-71B1E6A94007}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15C612DD-DB7C-4905-9786-71B1E6A94007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15C612DD-DB7C-4905-9786-71B1E6A94007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10F066B8-6985-44C4-96CC-CF9CFC7A5F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F066B8-6985-44C4-96CC-CF9CFC7A5F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F066B8-6985-44C4-96CC-CF9CFC7A5F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F066B8-6985-44C4-96CC-CF9CFC7A5F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -90,14 +90,12 @@ namespace Pinyin4net.Format
                     aRule, oRule, eRule, iuRule, uiRule, iRule, uRule, vRule
                 };
 
-            
+
             if (Regex.IsMatch(result, "^[a-zü]*[1-5]$"))
             {
-                int toneNumber = Int32.Parse(result.Last().ToString());
+                int toneNumber = Int32.Parse(result[result.Length - 1].ToString());
                 result = Regex.Replace(result, "[1-5]", "");
-#if DEBUG
-                Console.WriteLine("The tone number of " + pinyinWithToneNumber + "is: " + toneNumber);
-#endif
+
                 try
                 {
                     for (int i = 0; i < rules.Length; i++)
@@ -117,7 +115,7 @@ namespace Pinyin4net.Format
         private static KeyValuePair<string, List<string>> CreateReplaceRule(
             string ruleName, string ruleString)
         {
-            KeyValuePair<string, List<string>> result = 
+            KeyValuePair<string, List<string>> result =
                 new KeyValuePair<string, List<string>>(ruleName, new List<string>());
 
             int i = 0;
