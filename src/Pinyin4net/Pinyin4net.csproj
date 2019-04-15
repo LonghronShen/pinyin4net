@@ -1,59 +1,57 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{10F066B8-6985-44C4-96CC-CF9CFC7A5F7F}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pinyin4net</RootNamespace>
+    <Description>Pinyin4net can help you convert 中文 to zhōng wén.</Description>
+    <AssemblyTitle>Pinyin4Net.Core</AssemblyTitle>
+    <VersionPrefix>1.0.2</VersionPrefix>
+    <Authors>LonghronShen</Authors>
+    <TargetFrameworks>netstandard1.0;net20;net35;portable-net45+win8+wpa81;portable-net403+sl5+win8+wpa81+wp8</TargetFrameworks>
     <AssemblyName>Pinyin4net</AssemblyName>
-    <DefaultLanguage>zh-CN</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PackageId>Pinyin4Net-Portable</PackageId>
+    <PackageTags>pinyin4net pinyin pcl .net core</PackageTags>
+    <PackageProjectUrl>https://github.com/LonghronShen/pinyin4net</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/LonghronShen/pinyin4net/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/LonghronShen/pinyin4net</RepositoryUrl>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable-net45+win8+wpa81' ">
+    <DefineConstants>$(DefineConstants);PORTABLE;PROFILE111</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'portable-net403+sl5+win8+wpa81+wp8' ">
+    <DefineConstants>$(DefineConstants);PORTABLE;PROFILE336</DefineConstants>
   </PropertyGroup>
+
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <EmbeddedResource Include="Resources\unicode_to_hanyu_pinyin.xml" />
+    <None Remove="Resources\unicode_to_hanyu_pinyin.json" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Exceptions\BadFormatException.cs" />
-    <Compile Include="Format\HanyuPinyinCaseType.cs" />
-    <Compile Include="Format\HanyuPinyinOutputFormat.cs" />
-    <Compile Include="Format\HanyuPinyinToneType.cs" />
-    <Compile Include="Format\HanyuPinyinVCharType.cs" />
-    <Compile Include="Format\PinyinFormatter.cs" />
-    <Compile Include="PinyinHelper.cs" />
-    <Compile Include="PinyinRomanizationType.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Resources\unicode_to_hanyu_pinyin.json" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.68" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net20' ">
+    <PackageReference Include="Theraot.Core" Version="3.0.2" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
 </Project>

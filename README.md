@@ -8,12 +8,13 @@ this Branch add support to PCL
 Getting started
 ---------------------------------------------
 
-		using Pinyin4net;  
+```C#
+using Pinyin4net;  
 
-		...  
-		string[] pinyinStr = PinyinHelper.ToHanyuPinyinStringArray(someChineseChar);  
-		...  
-
+...  
+string[] pinyinStr = PinyinHelper.ToHanyuPinyinStringArray(someChineseChar);  
+...  
+```
 
 Features
 ---------------------------------------------

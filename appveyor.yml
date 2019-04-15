@@ -1,0 +1,32 @@
+os: Visual Studio 2019 Preview
+
+version: 1.0.2.{build}
+
+configuration:
+- Debug
+- Release
+
+platform: Any CPU
+
+init:
+- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+
+install:
+- ps: Start-FileDownload 'https://dotnetcli.blob.core.windows.net/dotnet/beta/Installers/Latest/dotnet-dev-win-x64.latest.exe'
+- cmd: dotnet-dev-win-x64.latest.exe /quiet
+
+environment:
+  PATH: $(PATH);$(PROGRAMFILES)\dotnet\
+
+build_script:
+- appveyor-retry msbuild Pinyin4net.sln /t:restore
+- msbuild Pinyin4net.sln /p:Configuration=%CONFIGURATION% /p:VersionSuffix=%LABEL%
+
+test_script:
+- dotnet test test\Pinyin4net.Tests\
+
+artifacts:
+- path: '**\*.nupkg'
+
+cache:
+- '%USERPROFILE%\.nuget\packages'

@@ -23,9 +23,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Xml.Linq;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using Newtonsoft.Json;
 using Pinyin4net.Format;
 
 namespace Pinyin4net
@@ -37,7 +38,7 @@ namespace Pinyin4net
     {
         private static Dictionary<string, string> dict;
 
-       
+
         /// <summary>
         /// We don't need any instances of this object.
         /// </summary>
@@ -51,23 +52,33 @@ namespace Pinyin4net
         static PinyinHelper()
         {
             dict = new Dictionary<string, string>();
-            var assembly = typeof(PinyinHelper).GetTypeInfo().Assembly;
-         
-            var doc = XDocument.Load(
-                assembly.GetManifestResourceStream(
-                    "Pinyin4net.Resources.unicode_to_hanyu_pinyin.xml"));
-            
-            var query =
-                from item in doc.Root.Descendants("item")
-                select new
-                {
-                    Unicode = (string)item.Attribute("unicode"),
-                    Hanyu = (string)item.Attribute("hanyu")
-                };
-            foreach (var item in query)
-                if (item.Hanyu.Length > 0)
-                    dict.Add(item.Unicode, item.Hanyu);
+            var assembly =
+#if NET20 || NET35 || PROFILE336
+                typeof(PinyinHelper).Assembly;
+#else
+                typeof(PinyinHelper).GetTypeInfo().Assembly;
+#endif
 
+            foreach (var item in assembly.GetManifestResourceNames())
+            {
+                if (item.EndsWith("Pinyin4net.Resources.unicode_to_hanyu_pinyin.json"))
+                {
+                    using (var stream = assembly.GetManifestResourceStream(item))
+                    {
+                        using (TextReader tr = new StreamReader(stream))
+                        {
+                            using (var jtr = new JsonTextReader(tr))
+                            {
+                                var serializer = new JsonSerializer();
+                                var items = serializer.Deserialize<PinyinItems>(jtr);
+                                dict = items.Items
+                                    .Where(x => !string.IsNullOrEmpty(x.Hanyu))
+                                    .ToDictionary(x => x.Unicode, x => x.Hanyu);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -107,10 +118,10 @@ namespace Pinyin4net
         private static string[] GetFomattedHanyuPinyinStringArray(
             char ch, HanyuPinyinOutputFormat format)
         {
-            string[] unformattedArr = GetUnformattedHanyuPinyinStringArray(ch);
+            var unformattedArr = GetUnformattedHanyuPinyinStringArray(ch);
             if (null != unformattedArr)
             {
-                for (int i = 0; i < unformattedArr.Length; i++)
+                for (var i = 0; i < unformattedArr.Length; i++)
                 {
                     unformattedArr[i] = PinyinFormatter.FormatHanyuPinyin(unformattedArr[i], format);
                 }
@@ -121,8 +132,8 @@ namespace Pinyin4net
 
         private static string[] GetUnformattedHanyuPinyinStringArray(char ch)
         {
-            string code = String.Format("{0:X}", (int)ch).ToUpper();
- 
+            var code = String.Format("{0:X}", (int)ch).ToUpper();
+
             if (dict.ContainsKey(code))
             {
                 return dict[code].Split(',');
@@ -131,5 +142,7 @@ namespace Pinyin4net
             return null;
         }
         #endregion
+
     }
+
 }
